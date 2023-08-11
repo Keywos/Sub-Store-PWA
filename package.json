@@ -1,0 +1,50 @@
+{
+  "name": "sub-store-front-end",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "@nutui/nutui": "^3.3.8",
+    "@vueuse/core": "^8.9.2",
+    "@vueuse/integrations": "^8.9.2",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.3",
+    "modern-css-reset": "^1.4.0",
+    "monaco-editor": "^0.33.0",
+    "pinia": "^2.0.14",
+    "qrcode": "^1.5.0",
+    "vue": "^3.2.37",
+    "vue-clipboard3": "^2.0.0",
+    "vue-i18n": "^9.2.0-beta.36",
+    "vue-router": "^4.0.16",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-angular": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/node": "^18.0.0",
+    "@vitejs/plugin-legacy": "^1.8.2",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "consola": "^2.15.3",
+    "fast-glob": "^3.2.11",
+    "husky": "^8.0.1",
+    "sass": "^1.53.0",
+    "terser": "^5.14.1",
+    "typescript": "^4.7.4",
+    "vconsole": "^3.14.6",
+    "vite": "^2.9.13",
+    "vite-plugin-monaco-editor": "^1.1.0",
+    "vite-plugin-style-import": "^2.0.0",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-tsc": "^0.35.2"
+  }
+}

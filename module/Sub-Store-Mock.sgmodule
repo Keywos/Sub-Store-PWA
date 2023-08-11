@@ -1,0 +1,40 @@
+#!name=Sub-Store Mock
+#!desc=前端页面加速模块: 提升加载速度/减少资源使用/新主题 需要搭配 SubStore 主程序使用 @key
+#!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/substore.png
+
+# 2023-08-05 11:18:28 Remove monaco-editor Re addAction
+# 脚本操作移动到第一行 方便使用脚本
+
+# 本地重命名：https://raw.githubusercontent.com/Keywos/rule/main/rename.js
+# Ping清除无效节点：https://raw.githubusercontent.com/Keywos/rule/main/pname.js
+# Api去重、查询ISP等：https://raw.githubusercontent.com/Keywos/rule/main/cname.js
+
+[Map Local]
+
+# HTML
+^https?:\/\/sub-store\.vercel\.app\/($|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.html" header="Content-Type: text/html; charset=utf-8"
+
+# JS VUE
+^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/main\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/core.js" header="Content-Type: application/javascript; charset=utf-8"
+
+# CSS
+^https?:\/\/sub-store\.vercel\.app\/main\.css$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.css" header="Content-Type: text/css; charset=utf-8"
+
+# JSON Manifest
+^https?:\/\/sub-store\.vercel\.app\/manifest\.json$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/manifest.json" header="Content-Type: application/json; charset=utf-8"
+
+# PNG ICO SVG
+^https?:\/\/sub-store\.vercel\.app\/144x144\.png data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/144x144.png" header="Content-Type: image/png"
+^https?:\/\/sub-store\.vercel\.app\/[^14]\d{1,2}x\d{1,3}\.png data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/144x144.png" header="Content-Type: image/png"
+^https?:\/\/sub-store\.vercel\.app\/apple-touch-icon\.png data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/apple-touch-icon.png" header="Content-Type: image/png"
+^https?:\/\/sub-store\.vercel\.app\/apple-touch-icon-.+\.png data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/apple-touch-icon-120x120.png" header="Content-Type: image/png"
+^https?:\/\/sub-store\.vercel\.app\/favicon\.svg$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/favicon.svg" header="Content-Type: image/svg+xml"
+^https?:\/\/sub-store\.vercel\.app\/favicon\.ico data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/favicon.ico" header="Content-Type: image/vnd.microsoft.icon"
+^https?:\/\/sub-store\.vercel\.app\/logo\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/logo.svg" header="Content-Type: image/svg+xml"
+^https?:\/\/sub-store\.vercel\.app\/user-solid\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/user-solid.svg" header="Content-Type: image/svg+xml"
+^https?:\/\/sub-store\.vercel\.app\/key-solid\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/key-solid.svg" header="Content-Type: image/svg+xml"
+^https?:\/\/sub-store\.vercel\.app\/avatar\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/avatar.svg" header="Content-Type: image/svg+xml"
+
+[MITM]
+hostname = %APPEND% sub.store, sub-store.vercel.app
