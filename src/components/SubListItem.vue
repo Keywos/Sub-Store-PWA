@@ -362,7 +362,7 @@ const onClickCopyConfig = async () => {
 
 const onClickEdit = () => {
   router.push(`/edit/${props.type}s/${name}`);
-  console.log("router\n")
+  // console.log("router\n")
   // console.log(JSON.stringify(router))
 };
 

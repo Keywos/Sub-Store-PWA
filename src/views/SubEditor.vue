@@ -244,7 +244,7 @@
   const { showNotify } = useAppNotifyStore();
 
   const globalStore = useGlobalStore();
-  const { bottomSafeArea, isSimpleMode } = storeToRefs(globalStore);
+  const { bottomSafeArea } = storeToRefs(globalStore);
   const padding = bottomSafeArea.value + 'px';
 
   const sub = computed(() => subsStore.getOneSub(configName));

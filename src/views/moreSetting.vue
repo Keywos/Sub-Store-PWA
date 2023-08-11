@@ -104,9 +104,11 @@
       V {{ env.version }} - <a target="_blank" href="https://github.com/sub-store-org/Sub-Store">
         https://github.com/sub-store-org/Sub-Store </a>
     </span>
+    <span>
     Mock 模块 : - <a target="_blank" href="https://github.com/Keywos/rule/raw/main/module/Sub-Store-Mock.sgmodule">
       https://github.com/Keywos/rule/raw/main/Sub-Store-Mock.sgmodule </a>
-    <span>
+    </span>
+      <span>
       更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件
     </span>
     <span>优化：
