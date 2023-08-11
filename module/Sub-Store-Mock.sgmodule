@@ -15,7 +15,8 @@
 ^https?:\/\/sub-store\.vercel\.app\/($|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.html" header="Content-Type: text/html; charset=utf-8"
 
 # JS VUE
-^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/main\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js" header="Content-Type: application/javascript; charset=utf-8"
 
 # CSS
 ^https?:\/\/sub-store\.vercel\.app\/main\.css$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.css" header="Content-Type: text/css; charset=utf-8"
