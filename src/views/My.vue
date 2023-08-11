@@ -55,28 +55,6 @@
         </div>
       </div>
 
-      <!-- style="color: red"  is-link -->
-      <!-- <nut-cell class="change-themes" :title="$t(`themeSettingPage.themeSettingTitle`)" @click.stop="onClickTheme"
-        right-icon="rect-right"></nut-cell> -->
-      <!-- <nut-cell-group title="自定义右侧箭头区域">
-
-    <nut-cell title="Switch" right-icon="rect-right">
-      
-    </nut-cell>
-  </nut-cell-group> -->
-      <!-- <nut-icon name="rect-right"></nut-icon> -->
-
-      <!-- <template> -->
-      <!-- <nut-cell-group title="自定义右侧箭头区域"> -->
-      <!-- <nut-cell :title="$t(`themeSettingPage.themeSettingTitle`)" class="change-themes" 
-      @click.stop="onClickTheme">
-        <template v-slot:link>
-          <nut-icon name="rect-right"></nut-icon>
-        </template>
-      </nut-cell> -->
-
-
-
       
       <nut-cell :title="$t(`moreSettingPage.moreSettingTitle`)" class="change-themes" 
       @click.stop="onClickMore">
@@ -84,11 +62,7 @@
           <nut-icon name="rect-right"></nut-icon>
         </template>
       </nut-cell>
-      <!-- </nut-cell-group> -->
-      <!-- </template> -->
-      <!-- <nut-cell class="change-themes" @click.stop="onClickMore"
-        :title="$t(`moreSettingPage.moreSettingTitle`)"></nut-cell> -->
-      <!-- to="/settings/more" -->
+    
     </div>
 
     <div class="env-block">
@@ -99,12 +73,7 @@
     </div>
   </div>
 
-  <!-- <CompareTable
-    v-if="compareTableIsVisible"
-    :name="configName"
-    :compareData="compareData"
-    @closeCompare="closeCompare"
-  /> -->
+ 
 </template>
 
 <script lang="ts" setup>
@@ -128,21 +97,7 @@ import {   computed, ref, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
-// import { usePopupRoute } from '@/hooks/usePopupRoute';
-//onActivated, onDeactivated,
-// import { onMounted, onBeforeUnmount } from 'vue';
-// 阻止滚动
-// const preventDefaultScroll = (event: Event) => {
-//   event.preventDefault();
-// };
 
-// onActivated(() => {
-//   window.addEventListener('scroll', preventDefaultScroll, { passive: false });
-// });
-
-// onDeactivated(() => {
-//   window.removeEventListener('scroll', preventDefaultScroll);
-// });
 
 const { t } = useI18n();
 
@@ -159,21 +114,6 @@ const displayAvatar = computed(() => {
   return !githubUser.value ? avatar : avatarUrl.value;
 });
 
-
-// const editType = route.params.editType as string;
-
-      //打开弹出层时阻止页面滑动
-      // document.body.style.overflow='hidden';
-      // document.body.addEventListener("touchmove", bodyScroll, { passive: false });
-  
-// const configName = route.params.id as string;
-
-// const compareTableIsVisible = ref(false);
-// usePopupRoute(compareTableIsVisible);
-
-// const onClickTheme = () => {
-//   router.push(`/settings/theme`);
-// };
 const onClickMore = () => {
   router.push(`/settings/more`);
 };

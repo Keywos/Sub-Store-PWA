@@ -23,9 +23,9 @@ export default {
       sub: 'Management',
       sync: 'Sync Subscription',
       my: 'My Profile',
-      subEditor: 'Subscription Editor',
+      subEditor: 'Subscription Editor ㅤ',
       themeSetting: 'Theme Setting',
-      moreSetting: 'More Setting',
+      moreSetting: 'More Setting ㅤ',
       notFound: '404 Not Found',
       askWhat: {
         sync: {

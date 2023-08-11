@@ -23,9 +23,9 @@ export default {
       sub: '订阅管理',
       sync: '同步订阅',
       my: '我的',
-      subEditor: '订阅编辑',
+      subEditor: "订阅编辑 ㅤ",
       themeSetting: '主题设置',
-      moreSetting: '更多设置',
+      moreSetting: '更多设置 ㅤ',
       notFound: '地址未找到',
       askWhat: {
         sync: {
