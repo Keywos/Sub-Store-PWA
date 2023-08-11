@@ -16,12 +16,11 @@
 
 # JS VUE
 ^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.js" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/main\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/core.js" header="Content-Type: application/javascript; charset=utf-8"
 
 # CSS
 ^https?:\/\/sub-store\.vercel\.app\/main\.css$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.css" header="Content-Type: text/css; charset=utf-8"
 
-# JSON Manifest
+# JSON
 ^https?:\/\/sub-store\.vercel\.app\/manifest\.json$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/manifest.json" header="Content-Type: application/json; charset=utf-8"
 
 # PNG ICO SVG
