@@ -2,15 +2,20 @@
 #!desc=前端页面加速模块: 提升加载速度/减少资源使用/新主题 需要搭配 SubStore 主程序使用 @key
 #!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/substore.png
 
-# 2023-08-05 11:18:28 Remove monaco-editor Re addAction
-# 脚本操作移动到第一行 方便使用脚本
+
+# 关于： Sub Store https://github.com/Keywos/Sub-Store-PWA
+# 前端： V 2.14.2 
+# Mock 模块: https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/Sub-Store-Mock.sgmodule
+# 在线版: https://keywos.eu.org
+# 更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件
+# 优化： 订阅管理页面优化：修复 左右滑动组件的时候 没有阻止会上下滑动 导致容易误触的问题。解决反复重启并发消耗资源的问题 降低资源占用内存优化侧滑返回容易失效的问题； 脚本操作、正则操作、等平铺放置更容易添加操作。
+# 误触： 点击订阅左边的图标才会预览，防止误触预览节点；左滑后点击滑块空白处可关闭当前滑块。 滑块右边自已定按钮添加编辑 更方便修改；
 
 # 本地重命名：https://raw.githubusercontent.com/Keywos/rule/main/rename.js
 # Ping清除无效节点：https://raw.githubusercontent.com/Keywos/rule/main/pname.js
 # Api去重、查询ISP等：https://raw.githubusercontent.com/Keywos/rule/main/cname.js
 
 [Map Local]
-
 # HTML
 ^https?:\/\/sub-store\.vercel\.app\/($|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.html" header="Content-Type: text/html; charset=utf-8"
 
