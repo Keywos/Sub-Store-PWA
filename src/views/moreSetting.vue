@@ -101,32 +101,55 @@
 
   <div class="desc-about">
 
-    关于： Sub Store<br>
+    关于：Sub Store<br>
     <span>
       前端：
-      V 2.14.3 - <a target="_blank" href="https://github.com/sub-store-org/Sub-Store-Front-End">
-        https://github.com/sub-store-org </a>
+      v 2.14.3
+      -<a target="_blank" href="https://github.com/Keywos/Sub-Store-PWA"> github.com/Keywos/Sub-Store-PWA
+      </a>
       <br>
       后端：
-      V {{ env.version }} - <a target="_blank" href="https://github.com/sub-store-org/Sub-Store">
-        https://github.com/sub-store-org/Sub-Store </a>
+      v {{ env.version }}
+      -<a target="_blank" href="https://github.com/sub-store-org/Sub-Store"> github.com/sub-store-org/Sub-Store </a>
     </span>
     <span>
-    Mock 模块 : - <a target="_blank" href="https://github.com/Keywos/rule/raw/main/module/Sub-Store-Mock.sgmodule">
-      https://github.com/Keywos/rule/raw/main/Sub-Store-Mock.sgmodule </a>
+      Mock 模块 -
+
+      <a target="_blank" href="https://github.com/Keywos/rule/raw/main/module/Sub-Store-Mock.sgmodule">
+        github.com/Keywos/rule/raw/main/Sub-Store</a>
     </span>
-      <span>
-      更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件。
-    </span>
-    <span>优化：
-      订阅管理页面优化：修复 左右滑动组件的时候 没有阻止会上下滑动 导致容易误触的问题。解决反复重启并发消耗资源的问题 降低资源占用内存
-    </span>
+    <br>
+
     <span>
-      优化：侧滑返回容易失效的问题； 脚本操作、正则操作、等平铺放置更容易添加操作。
+      更新日志：
     </span>
-    <span>误触：
-      点击订阅左边的图标才会预览，防止误触预览节点；左滑 [可设置右滑]呼出快捷方式。 后点击滑块空白处可关闭当前滑块。 滑块右边自已定按钮添加编辑 更方便修改。
-    </span>
+
+    <br> ㅤ•ㅤ
+    更新组件库 NutUI v3.3.8、Picker 问题修复
+    <br> ㅤ•ㅤ
+    解决反复重启并发消耗资源、降低资源占用内存
+    <br> ㅤ•ㅤ
+    移除：Monaco-Editor 组件
+
+    <br> ㅤ•ㅤ
+    添加新主题、Simple 模式
+    <br> ㅤ•ㅤ
+    自定义后端 HostAPI 更多使用场景
+    <br> ㅤ•ㅤ
+    可选重启时自动下载 Gist 配置文件
+
+    <br> ㅤ•ㅤ
+    卡片左滑可设置右滑呼出快捷方式。
+    <br> ㅤ•ㅤ
+    优化侧滑返回容易失效的问题
+    <br> ㅤ•ㅤ
+    修复左右滑动组件的时候 没有阻止会上下滑动 容易误触
+    <br> ㅤ•ㅤ
+    脚本操作、正则操作、等平铺放置更容易添加操作
+    <br> ㅤ•ㅤ
+    点击订阅左边的图标才会预览，防止误触预览节点
+    <br> ㅤ•ㅤ
+    点击卡片空白处可关闭当前滑块。添加编辑方便修改
 
   </div>
 </template>
@@ -496,4 +519,5 @@ watchEffect(() => {
     font-weight: bold;
   }
 
-}</style>
+}
+</style>
