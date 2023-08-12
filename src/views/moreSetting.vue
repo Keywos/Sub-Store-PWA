@@ -92,7 +92,7 @@
       {{ $t(`moreSettingPage.desc`) }}
     </p>
 
-  </div>
+ 
 
   <nut-picker v-model="selectedValue" v-model:visible="showThemePicker" :columns="pickerColumn"
     :title="$t(`themeSettingPage.themePicker.title`)" :cancel-text="$t(`themeSettingPage.themePicker.cancel`)"
@@ -100,7 +100,7 @@
 
 
   <div class="desc-about">
-
+    <br><br><br><br><br><br>
     关于：Sub Store<br>
     <span>
       前端：
@@ -154,6 +154,7 @@
     首页图标默认图标依旧为黑白，自已定图标彩色
 
   </div>
+</div>
 </template>
 
 <script lang="ts" setup>
@@ -330,8 +331,9 @@ watchEffect(() => {
 }
 
 .desc-about {
+  // width: 100%;
   // display: block;
-  padding: 150px 30px 320px;
+  padding: 100px 5px 320px;
   color: var(--comment-text-color);
   font-size: 12px;
   // line-height: 20px;
