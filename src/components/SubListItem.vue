@@ -5,8 +5,10 @@
     <div class="sub-item-wrapper" :style="{ padding: isSimpleMode ? '11px' : '16px' }" @click="swipeClose">
       <!-- compareSub -->
       <div @click="compareSub" class="sub-img-wrapper" :style="{ 'line-height': isSimpleMode ? 1 : '' }">
-        <nut-avatar class="sub-item-customer-icon" :size="isSimpleMode ? '36' : '48'"
-          :url="props[props.type].icon || icon" bg-color=""></nut-avatar>
+        <nut-avatar v-if="props[props.type].icon" :size="isSimpleMode ? '36' : '48'" :url="props[props.type].icon"
+          bg-color=""></nut-avatar>
+        <nut-avatar v-else class="sub-item-customer-icon" :size="isSimpleMode ? '36' : '48'" :url="icon"
+          bg-color=""></nut-avatar>
       </div>
       <div class="sub-item-content">
         <div class="sub-item-title-wrapper">
@@ -83,8 +85,8 @@
 
     </div>
     <template v-if="isLeftRight" #left>
-       <!-- Copy -->
-       <div class="sub-item-swipe-btn-wrapper">
+      <!-- Copy -->
+      <div class="sub-item-swipe-btn-wrapper">
         <nut-button shape="square" type="primary" class="sub-item-swipe-btn" @click="onClickCopyConfig">
           <font-awesome-icon icon="fa-solid fa-paste" />
         </nut-button>
@@ -286,14 +288,14 @@ const swipeController = () => {
     swipeIsOpen.value = false;
     moreAction.value.style.transform = 'rotate(0deg)';
   } else {
-    if ( isLeftRight.value ){
+    if (isLeftRight.value) {
       swipe.value.open('right');
     } else {
       swipe.value.open('left');
       swipeIsOpen.value = true;
       moreAction.value.style.transform = 'rotate(180deg)';
     }
-    
+
   }
 };
 
@@ -399,8 +401,8 @@ const onClickRefresh = async () => {
 .sub-item-customer-icon {
   :deep(img) {
     & {
+      opacity: 0.80;
       filter: brightness(var(--img-brightness));
-      opacity: 0.75;
     }
   }
 }
@@ -525,6 +527,7 @@ const onClickRefresh = async () => {
       &:last-child {
         padding-right: 10px;
       }
+
       .sub-item-swipe-btn {
         border-radius: 50%;
         height: 46px;
