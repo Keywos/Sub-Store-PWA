@@ -1,6 +1,6 @@
 <template>
   <nut-swipe class="sub-item-swipe" ref="swipe">
-    <div class="sub-item-wrapper">
+    <div class="sub-item-wrapper" @click.stop="onclose">
       <div class="sub-img-wrapper">
         <nut-avatar class="sub-item-customer-icon" size="48" :url="icon" bg-color=""></nut-avatar>
       </div>
@@ -202,9 +202,13 @@ const swipeController = () => {
     swipeIsOpen.value = false;
     moreAction.value.style.transform = 'rotate(0deg)';
   } else {
-    swipe.value.open('left');
-    swipeIsOpen.value = true;
-    moreAction.value.style.transform = 'rotate(180deg)';
+    if ( isLeftRight.value ){
+      swipe.value.open('right');
+    } else {
+      swipe.value.open('left');
+      swipeIsOpen.value = true;
+      moreAction.value.style.transform = 'rotate(180deg)';
+    }
   }
 };
 
@@ -234,6 +238,10 @@ const onClickSync = async () => {
 const onClickEdit = () => {
   swipe.value.close();
   emit('edit', artifact.value);
+};
+
+const onclose = () => {
+  swipe.value.close();
 };
 
 const onClickDelete = () => {

@@ -286,9 +286,14 @@ const swipeController = () => {
     swipeIsOpen.value = false;
     moreAction.value.style.transform = 'rotate(0deg)';
   } else {
-    swipe.value.open('left');
-    swipeIsOpen.value = true;
-    moreAction.value.style.transform = 'rotate(180deg)';
+    if ( isLeftRight.value ){
+      swipe.value.open('right');
+    } else {
+      swipe.value.open('left');
+      swipeIsOpen.value = true;
+      moreAction.value.style.transform = 'rotate(180deg)';
+    }
+    
   }
 };
 
