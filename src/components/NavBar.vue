@@ -7,6 +7,7 @@
         @on-click-right="showLangSwitchPopup = true"
         :title="currentTitle"
         :tit-icon="currentTitleWhetherAsk"
+
         @on-click-icon="onClickNavbarIcon"
       >
         <template #right>
@@ -89,7 +90,7 @@
     return metaTitle ? t(`navBar.pagesTitle.${metaTitle}`) : undefined;
   });
   const currentTitleWhetherAsk = computed(() => {
-    const ownAsk = ['sync'];
+    const ownAsk = ['sync','subEditor','moreSetting'];
     const metaTitle = route.meta.title;
     return ownAsk.includes(metaTitle) ? 'ask' : '';
   });

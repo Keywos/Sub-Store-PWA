@@ -23,9 +23,9 @@ export default {
       sub: 'Management',
       sync: 'Sync Subscription',
       my: 'My Profile',
-      subEditor: 'Subscription Editor ㅤ',
+      subEditor: 'Subscription Editor',
       themeSetting: 'Theme Setting',
-      moreSetting: 'More Setting ㅤ',
+      moreSetting: 'More Setting',
       notFound: '404 Not Found',
       askWhat: {
         sync: {
@@ -33,6 +33,16 @@ export default {
           content:
             'Upload your subscriptions to a private Gist, which can be accessed at any time on devices that do not run the Sub Store (e.g. routers, etc.).',
         },
+        subEditor: {
+          title: 'Download no subscription？',
+          content:
+            'Try replacing UA· Download. The default isQuanX UA',
+        },
+        moreSetting: {
+          title: 'Try',
+          content:
+            'Try',
+        }, 
       },
     },
   },

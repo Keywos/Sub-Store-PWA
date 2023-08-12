@@ -23,9 +23,9 @@ export default {
       sub: '订阅管理',
       sync: '同步订阅',
       my: '我的',
-      subEditor: "订阅编辑 ㅤ",
+      subEditor: "订阅编辑",
       themeSetting: '主题设置',
-      moreSetting: '更多设置 ㅤ',
+      moreSetting: '更多设置',
       notFound: '地址未找到',
       askWhat: {
         sync: {
@@ -33,6 +33,16 @@ export default {
           content:
             '将您的订阅信息上传到私有 Gist，在无法运行 Sub Store 的设备（例如路由器等）上也可以随时访问。',
         },
+        subEditor: {
+          title: '下载不了订阅？',
+          content:
+            '尝试更换 UA 下载试试，默认为QuanX UA',
+        },
+        moreSetting: {
+          title: '遇到问题？',
+          content:
+            '遇到问题？',
+        }, 
       },
     },
   },
