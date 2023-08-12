@@ -142,7 +142,23 @@ const tokenInput = ref('');
 const isEditing = ref(false);
 const isEditLoading = ref(false);
 const isInit = ref(false);
+const touchStartY = ref(null);
 
+const onTouchStart =(event: TouchEvent) => {
+  touchStartY.value = Math.abs(event.touches[0].clientY);
+}
+const onTouchMove = (event: TouchEvent) => {
+  const deltaY = Math.abs(event.changedTouches[0].clientY - touchStartY.value);
+  const isScrollingUps = deltaY > 0;
+
+  if (isScrollingUps && isScrollingUps) {
+    event.preventDefault();
+  }
+};
+
+const onTouchEnd = () => {
+  touchStartY.value = null;
+};
 const toggleEditMode = async () => {
   isEditLoading.value = true;
   if (isEditing.value) {
@@ -222,30 +238,6 @@ const sync = async (query: 'download' | 'upload') => {
 
   downloadIsLoading.value = false;
   uploadIsLoading.value = false;
-};
-
-const touchStartY = ref(null);
-// const touchStartX = ref(null);
-
-const onTouchStart = (event) => {
-  touchStartY.value = Math.abs(event.touches[0].clientY);
-  // touchStartX.value = Math.abs(event.touches[0].clientX);
-}
-const onTouchMove = (event) => {
-  const deltaY = Math.abs(event.changedTouches[0].clientY - touchStartY.value);
-  // const deltaX = Math.abs(event.changedTouches[0].clientX - touchStartX.value);
-
-  // const isScrollingUp = deltaX > 0;
-  const isScrollingUps = deltaY > 0;
-
-  if (isScrollingUps && isScrollingUps) {
-    event.preventDefault();
-  }
-};
-
-const onTouchEnd = () => {
-  touchStartY.value = null;
-  // touchStartX.value = null;
 };
 
 // store 刷新数据完成后 复制内容给 input 绑定

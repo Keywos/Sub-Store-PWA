@@ -1,39 +1,7 @@
 
-<template 
->
-
-<!-- <template #right>
-
-      <div class="sub-item-swipe-btn-wrapper">
-        <nut-button shape="square" type="primary" class="sub-item-swipe-btn" @click="onClickCopyConfig">
-          <font-awesome-icon icon="fa-solid fa-paste" />
-        </nut-button>
-      </div>
-   
-   
-    </template> -->
-
-<!-- @touchstart="onTouchStart" @touchmove="onTouchMove" -->
-<div 
-    @touchstart="onTouchStart"
-    @touchmove="onTouchMove"
-    @touchend="onTouchEnd"
->
-<!-- <template> -->
-
-<!-- </template> -->
-
-<!-- <nut-pull-refresh v-model="refresh" loosing-txt="松开吧" loading-txt="玩命加载中..." @refresh="refreshFun">
-    <template #pulling-txt>
-      <div>用力拉</div>
-    </template>
-    <div>向下拉试试吧！</div>
-    <div v-for="(item, index) in 24" class="test">{{ index }}</div>
-  </nut-pull-refresh> -->
-
-    <!-- 滚动内容 -->
- 
-  <nut-swipe  class="sub-item-swipe" ref="swipe">
+<template >
+  <!-- 滚动内容 -->
+  <nut-swipe class="sub-item-swipe" ref="swipe">
     <div class="sub-item-wrapper" :style="{ padding: isSimpleMode ? '11px' : '16px' }" @click="swipeClose">
       <!-- compareSub -->
       <div @click="compareSub" class="sub-img-wrapper" :style="{ 'line-height': isSimpleMode ? 1 : '' }">
@@ -102,7 +70,7 @@
             </template>
             <template v-else>
               <span style="font-weight: normal;">
-                {{ flow.firstLine }} &nbsp;
+                {{ flow.firstLine }}
               </span>
               <span style="font-weight: normal;"> {{ flow.secondLine }} </span>
             </template>
@@ -147,12 +115,11 @@
           <font-awesome-icon icon="fa-solid fa-trash-can" />
         </nut-button>
       </div>
-   
+
     </template>
   </nut-swipe>
 
   <CompareTable v-if="compareTableIsVisible" :name="name" :compareData="compareData" @closeCompare="closeCompare" />
-</div>
 </template>
 
 <script lang="ts" setup>
@@ -181,8 +148,6 @@ const { copy, isSupported } = useClipboard();
 const { toClipboard: copyFallback } = useV3Clipboard();
 const { t } = useI18n();
 
-
-document.body.style.overflow='hidden';
 const props = defineProps<{
   type: 'sub' | 'collection';
   sub?: Sub;
@@ -362,8 +327,6 @@ const onClickCopyConfig = async () => {
 
 const onClickEdit = () => {
   router.push(`/edit/${props.type}s/${name}`);
-  // console.log("router\n")
-  // console.log(JSON.stringify(router))
 };
 
 const onClickDelete = () => {
@@ -417,33 +380,6 @@ const onClickRefresh = async () => {
   showNotify({ title: t('globalNotify.refresh.succeed') });
 };
 
-
-
-
-
-const touchStartY = ref(null);
-const touchStartX = ref(null);
-
-const onTouchStart = (event) => {
-  touchStartY.value = Math.abs(event.touches[0].clientY);
-  touchStartX.value = Math.abs(event.touches[0].clientX);
-}
-const onTouchMove = (event) => {
-  const deltaY = Math.abs(event.changedTouches[0].clientY - touchStartY.value);
-  const deltaX = Math.abs(event.changedTouches[0].clientX - touchStartX.value);
-
-  const isScrollingUp = deltaX > 2;
-  const isScrollingUps = deltaY < 10;
-
-  if (isScrollingUp && isScrollingUps) {
-    event.preventDefault();
-  }
-};
-
-const onTouchEnd = () => {
-  touchStartY.value = null;
-  touchStartX.value = null;
-};
 
 </script>
 
@@ -585,6 +521,7 @@ const onTouchEnd = () => {
     }
   }
 }
+
 .desc-about {
   display: block;
   padding: 100px 30px 350px;
