@@ -6,7 +6,8 @@ interface GlobalStoreState {
   isDarkMode: boolean;
   env: ENV;
   isSimpleMode: boolean;
-  ishostApi: string;
+  isLeftRight: boolean;
+  ishostApi: any;
 }
 
 interface ENV {

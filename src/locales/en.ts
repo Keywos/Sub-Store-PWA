@@ -484,6 +484,7 @@ export default {
     auto: 'Auto Download Gist config on startup',
     desc:'Note: Turning on this switch will automatically download and refresh the Gist remote configuration when SubStore is opened. The refresh operation overwrites the current configuration. To prevent data loss, you can manually upload the configuration after the modification. The switch will not be uploaded, and the configuration will be downloaded only after the restart.',
     simple: 'Simple Mode',
+    islr: 'Card right swipe to call out',
     auto2: 'MoreSetting Key',
     hostapi: 'Custom Backend API',
     yhostapi: 'Default:https://sub.store ',

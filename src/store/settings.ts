@@ -3,7 +3,7 @@ import i18n from '@/locales';
 import { useAppNotifyStore } from '@/store/appNotify';
 import { Toast } from '@nutui/nutui';
 import { defineStore } from 'pinia';
-import { useEnvApi } from '@/api/env';
+// import { useEnvApi } from '@/api/env';
 import { useSubsStore } from '@/store/subs';
 
 const settingsApi = useSettingsApi();

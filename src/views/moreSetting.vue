@@ -7,9 +7,16 @@
     <p class="More-title">
       {{ $t(`themeSettingPage.themeSettingTitle`) }}
     </p>
+
     <nut-cell :title="$t(`moreSettingPage.simple`)" class="cell-item">
       <template v-slot:link>
         <nut-switch class="my-switch" v-model="SimpleSwitch" size="mini" @change="setSimpleMode" />
+      </template>
+    </nut-cell>
+
+    <nut-cell :title="$t(`moreSettingPage.islr`)" class="cell-item">
+      <template v-slot:link>
+        <nut-switch class="my-switch" v-model="LeftRight" size="mini" @change="setLeftRight" />
       </template>
     </nut-cell>
 
@@ -97,7 +104,7 @@
     关于： Sub Store<br>
     <span>
       前端：
-      V 2.14.2 - <a target="_blank" href="https://github.com/sub-store-org/Sub-Store-Front-End">
+      V 2.14.3 - <a target="_blank" href="https://github.com/sub-store-org/Sub-Store-Front-End">
         https://github.com/sub-store-org </a>
       <br>
       后端：
@@ -109,7 +116,7 @@
       https://github.com/Keywos/rule/raw/main/Sub-Store-Mock.sgmodule </a>
     </span>
       <span>
-      更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件
+      更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件。
     </span>
     <span>优化：
       订阅管理页面优化：修复 左右滑动组件的时候 没有阻止会上下滑动 导致容易误触的问题。解决反复重启并发消耗资源的问题 降低资源占用内存
@@ -118,7 +125,7 @@
       优化：侧滑返回容易失效的问题； 脚本操作、正则操作、等平铺放置更容易添加操作。
     </span>
     <span>误触：
-      点击订阅左边的图标才会预览，防止误触预览节点；左滑后点击滑块空白处可关闭当前滑块。 滑块右边自已定按钮添加编辑 更方便修改；
+      点击订阅左边的图标才会预览，防止误触预览节点；左滑 [可设置右滑]呼出快捷方式。 后点击滑块空白处可关闭当前滑块。 滑块右边自已定按钮添加编辑 更方便修改。
     </span>
 
   </div>
@@ -139,11 +146,12 @@ const settingsStore = useSettingsStore();
 const { changeAutoDownloadGist } = settingsStore;
 const { autoDownloadGistSync } = storeToRefs(settingsStore);
 const globalStore = useGlobalStore();
-const { env, isSimpleMode, ishostApi } = storeToRefs(globalStore);
+const { env, isSimpleMode, isLeftRight, ishostApi } = storeToRefs(globalStore);
 
 const InputHostApi = ref('');
 const autoSwitchSync = ref(false);
 const SimpleSwitch = ref(false);
+const LeftRight = ref(false);
 const isEditing = ref(false);
 const isInit = ref(false);
 
@@ -156,7 +164,12 @@ const setSimpleMode = (isSimpleMode: boolean) => {
   globalStore.setSimpleMode(isSimpleMode);
 };
 
-const SwitchSyncIsChange = val => {
+const setLeftRight = (isLeftRight: boolean) => {
+  globalStore.setLeftRight(isLeftRight);
+};
+
+
+const SwitchSyncIsChange = (val: boolean) => {
   changeAutoDownloadGist({ autoDownloadGistSync: val });
 };
 
@@ -201,7 +214,7 @@ const confirm = ({ selectedValue }) => {
   changeTheme({ theme: data });
 };
 
-const autoSwitchIsChange = val => {
+const autoSwitchIsChange = (val: boolean) => {
   const data = { ...theme.value };
   data.auto = val;
   changeTheme({ theme: data });
@@ -231,14 +244,16 @@ const toggleEditMode = async () => {
   isEditing.value = !isEditing.value;
 };
 
+
 watchEffect(() => {
+  SimpleSwitch.value = isSimpleMode.value;
+  LeftRight.value = isLeftRight.value;
+  autoSwitchSync.value = autoDownloadGistSync.value;
+  autoSwitch.value = isAuto();
   if (!isInit.value) {
     setDisplayInfo();
     isInit.value = true;
   }
-  autoSwitchSync.value = autoDownloadGistSync.value;
-  SimpleSwitch.value = isSimpleMode.value;
-  autoSwitch.value = isAuto();
 });
 </script>
 
@@ -291,7 +306,7 @@ watchEffect(() => {
 
 .desc-about {
   // display: block;
-  padding: 100px 30px 350px;
+  padding: 150px 30px 320px;
   color: var(--comment-text-color);
   font-size: 12px;
   // line-height: 20px;
@@ -323,7 +338,7 @@ watchEffect(() => {
   align-items: center;
   font-size: 12px;
   color: var(--lowest-text-color);
-
+  opacity: 0.3;
 }
 
 .More-title {

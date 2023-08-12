@@ -60,7 +60,6 @@
           </p>
         </template>
         <template v-else>
-          <!-- <div v-if="isSimpleMode" > -->
           <p v-if="type === 'sub'" class="sub-item-detail-isSimple">
 
             <template v-if="typeof flow === 'string'">
@@ -70,7 +69,7 @@
             </template>
             <template v-else>
               <span style="font-weight: normal;">
-                {{ flow.firstLine }}
+                {{ flow.firstLine }} &nbsp;
               </span>
               <span style="font-weight: normal;"> {{ flow.secondLine }} </span>
             </template>
@@ -78,25 +77,33 @@
           <p v-else-if="type === 'collection'" class="sub-item-detail-isSimple">
             {{ collectionDetail }}
           </p>
-          <!-- </div> -->
         </template>
 
       </div>
 
     </div>
-    <!-- <template #left>
-      <div class="sub-item-swipe-btn-wrapper">
-        <nut-button
-          shape="square"
-          type="primary"
-          class="sub-item-swipe-btn"
-          @click="onClickCopyConfig"
-        >
+    <template v-if="isLeftRight" #left>
+       <!-- Copy -->
+       <div class="sub-item-swipe-btn-wrapper">
+        <nut-button shape="square" type="primary" class="sub-item-swipe-btn" @click="onClickCopyConfig">
           <font-awesome-icon icon="fa-solid fa-paste" />
         </nut-button>
       </div>
-    </template> -->
-    <template #right>
+      <!-- preview -->
+      <div class="sub-item-swipe-btn-wrapper">
+        <nut-button shape="square" type="success" class="sub-item-swipe-btn" @click="onClickPreview">
+          <font-awesome-icon icon="fa-solid fa-eye" />
+        </nut-button>
+      </div>
+      <!-- del -->
+      <div class="sub-item-swipe-btn-wrapper">
+        <nut-button shape="square" type="danger" class="sub-item-swipe-btn" @click="onClickDelete">
+          <font-awesome-icon icon="fa-solid fa-trash-can" />
+        </nut-button>
+      </div>
+    </template>
+
+    <template v-else #right>
       <!-- Copy -->
       <div class="sub-item-swipe-btn-wrapper">
         <nut-button shape="square" type="primary" class="sub-item-swipe-btn" @click="onClickCopyConfig">
@@ -183,7 +190,7 @@ const collectionDetail = computed(() => {
     )}`;
   }
 });
-const { isFlowFetching, isSimpleMode } = storeToRefs(globalStore);
+const { isFlowFetching, isSimpleMode, isLeftRight } = storeToRefs(globalStore);
 
 const flow = computed(() => {
   if (props.type === 'sub') {
@@ -207,7 +214,7 @@ const flow = computed(() => {
         usage: { upload, download },
       } = target.data;
 
-      let secondLine;
+      let secondLine: string;
       if (isSimpleMode.value) {
         secondLine = !expires
           ? ''
@@ -388,6 +395,7 @@ const onClickRefresh = async () => {
   :deep(img) {
     & {
       filter: brightness(var(--img-brightness));
+      opacity: 0.75;
     }
   }
 }
@@ -507,12 +515,11 @@ const onClickRefresh = async () => {
     align-items: center;
 
     .sub-item-swipe-btn-wrapper {
-      padding-left: 24px;
+      padding-left: 14px;
 
       &:last-child {
-        padding-right: 12px;
+        padding-right: 10px;
       }
-
       .sub-item-swipe-btn {
         border-radius: 50%;
         height: 46px;
