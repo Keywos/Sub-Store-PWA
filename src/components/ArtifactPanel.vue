@@ -118,6 +118,7 @@
   const ruleForm = ref();
 
   const emit = defineEmits(['close']);
+  
   const { name } = defineProps<{
     name: string;
   }>();

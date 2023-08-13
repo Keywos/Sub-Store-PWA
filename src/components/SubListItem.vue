@@ -150,7 +150,7 @@ import { computed, createVNode, ref, toRaw } from 'vue';
 import useV3Clipboard from 'vue-clipboard3';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
-import { defineProps } from 'vue';
+// import { defineProps } from 'vue';
 
 
 const { copy, isSupported } = useClipboard();

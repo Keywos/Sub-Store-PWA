@@ -1,9 +1,9 @@
 <template>
-  <div class="env-block">
-    <p>v{{ env.version }} </p>
-    <p>{{ env.backend }}</p>
-  </div>
   <div class="page-wrapper">
+    <div class="env-block">
+      <p>v{{ env.version }} </p>
+      <p>{{ env.backend }}</p>
+    </div>
     <p class="More-title">
       {{ $t(`themeSettingPage.themeSettingTitle`) }}
     </p>
@@ -92,69 +92,68 @@
       {{ $t(`moreSettingPage.desc`) }}
     </p>
 
- 
-
-  <nut-picker v-model="selectedValue" v-model:visible="showThemePicker" :columns="pickerColumn"
-    :title="$t(`themeSettingPage.themePicker.title`)" :cancel-text="$t(`themeSettingPage.themePicker.cancel`)"
-    :ok-text="$t(`themeSettingPage.themePicker.confirm`)" @confirm="confirm"></nut-picker>
 
 
-  <div class="desc-about">
-    <br><br><br><br><br><br>
-    关于：Sub Store<br>
-    <span>
-      前端：
-      v 2.14.3
-      -<a target="_blank" href="https://github.com/Keywos/Sub-Store-PWA"> github.com/Keywos/Sub-Store-PWA
-      </a>
+    <nut-picker v-model="selectedValue" v-model:visible="showThemePicker" :columns="pickerColumn"
+      :title="$t(`themeSettingPage.themePicker.title`)" :cancel-text="$t(`themeSettingPage.themePicker.cancel`)"
+      :ok-text="$t(`themeSettingPage.themePicker.confirm`)" @confirm="confirm"></nut-picker>
+
+    <div class="desc-about">
+      <br><br><br><br><br><br>
+      关于：Sub Store<br>
+      <span>
+        前端：
+        v 2.14.3
+        -<a target="_blank" href="https://github.com/Keywos/Sub-Store-PWA"> github.com/Keywos/Sub-Store-PWA
+        </a>
+        <br>
+        后端：
+        v {{ env.version }}
+        -<a target="_blank" href="https://github.com/sub-store-org/Sub-Store"> github.com/sub-store-org/Sub-Store </a>
+      </span>
+      <span>
+        Mock 模块 -
+
+        <a target="_blank" href="https://github.com/Keywos/rule/raw/main/module/Sub-Store-Mock.sgmodule">
+          github.com/Keywos/rule/raw/main/Sub-Store</a>
+      </span>
       <br>
-      后端：
-      v {{ env.version }}
-      -<a target="_blank" href="https://github.com/sub-store-org/Sub-Store"> github.com/sub-store-org/Sub-Store </a>
-    </span>
-    <span>
-      Mock 模块 -
 
-      <a target="_blank" href="https://github.com/Keywos/rule/raw/main/module/Sub-Store-Mock.sgmodule">
-        github.com/Keywos/rule/raw/main/Sub-Store</a>
-    </span>
-    <br>
+      <span>
+        更新日志：
+      </span>
 
-    <span>
-      更新日志：
-    </span>
+      <br> ㅤ•ㅤ
+      更新组件库 NutUI v3.3.8、Picker 问题修复
+      <br> ㅤ•ㅤ
+      解决反复重启并发消耗资源、降低资源占用内存
+      <br> ㅤ•ㅤ
+      移除：Monaco-Editor 组件
 
-    <br> ㅤ•ㅤ
-    更新组件库 NutUI v3.3.8、Picker 问题修复
-    <br> ㅤ•ㅤ
-    解决反复重启并发消耗资源、降低资源占用内存
-    <br> ㅤ•ㅤ
-    移除：Monaco-Editor 组件
+      <br> ㅤ•ㅤ
+      添加新主题、Simple 模式
+      <br> ㅤ•ㅤ
+      自定义后端 HostAPI 更多使用场景
+      <br> ㅤ•ㅤ
+      可选重启时自动下载 Gist 配置文件
 
-    <br> ㅤ•ㅤ
-    添加新主题、Simple 模式
-    <br> ㅤ•ㅤ
-    自定义后端 HostAPI 更多使用场景
-    <br> ㅤ•ㅤ
-    可选重启时自动下载 Gist 配置文件
+      <br> ㅤ•ㅤ
+      卡片左滑可设置右滑呼出快捷方式。
+      <br> ㅤ•ㅤ
+      优化侧滑返回容易失效的问题
+      <br> ㅤ•ㅤ
+      修复左右滑动组件的时候 没有阻止会上下滑动 容易误触
+      <br> ㅤ•ㅤ
+      脚本操作、正则操作、等平铺放置更容易添加操作
+      <br> ㅤ•ㅤ
+      点击订阅左边的图标才会预览，防止误触预览节点
+      <br> ㅤ•ㅤ
+      点击卡片空白处可关闭当前滑块。添加编辑方便修改
+      <br> ㅤ•ㅤ
+      首页图标默认图标依旧为黑白，自已定图标彩色
 
-    <br> ㅤ•ㅤ
-    卡片左滑可设置右滑呼出快捷方式。
-    <br> ㅤ•ㅤ
-    优化侧滑返回容易失效的问题
-    <br> ㅤ•ㅤ
-    修复左右滑动组件的时候 没有阻止会上下滑动 容易误触
-    <br> ㅤ•ㅤ
-    脚本操作、正则操作、等平铺放置更容易添加操作
-    <br> ㅤ•ㅤ
-    点击订阅左边的图标才会预览，防止误触预览节点
-    <br> ㅤ•ㅤ
-    点击卡片空白处可关闭当前滑块。添加编辑方便修改
-    <br> ㅤ•ㅤ
-    首页图标默认图标依旧为黑白，自已定图标彩色
-
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts" setup>
@@ -206,15 +205,14 @@ useMousePicker();
 const selectedValue = ref(['dark']);
 
 const themeDes = computed(() => {
+  const lightItem = pickerLightList.value.find(item => item.value === theme.value.light);
+  const darkItem = pickerDarkList.value.find(item => item.value === theme.value.dark);
+  const nameItem = pickerList.value.find(item => item.value === theme.value.name);
+
   return {
-    lightDes: pickerLightList.value.find(
-      item => item.value === theme.value.light
-    ).text,
-    darkDes: pickerDarkList.value.find(item => {
-      return item.value === theme.value.dark;
-    }).text,
-    nameDes: pickerList.value.find(item => item.value === theme.value.name)
-      .text,
+    lightDes: lightItem ? lightItem.text : '',
+    darkDes: darkItem ? darkItem.text : '',
+    nameDes: nameItem ? nameItem.text : '',
   };
 });
 const openPicker = (type: 'dark' | 'light' | 'name') => {

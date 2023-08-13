@@ -1,8 +1,8 @@
 <template>
   <nut-swipe class="sub-item-swipe" ref="swipe">
-    <div class="sub-item-wrapper" @click.stop="onclose">
+    <div class="sub-item-wrapper" :style="{'line-height': isSimpleMode ? 1 : '',padding: isSimpleMode ? '11px' : '16px' }" @click.stop="onclose">
       <div class="sub-img-wrapper">
-        <nut-avatar class="sub-item-customer-icon" size="48" :url="icon" bg-color=""></nut-avatar>
+        <nut-avatar class="sub-item-customer-icon" :size="isSimpleMode ? '36' : '48'" :url="icon" bg-color=""></nut-avatar>
       </div>
       <div class="sub-item-content">
         <div class="sub-item-title-wrapper">
@@ -10,9 +10,10 @@
             {{ displayName }}
           </h3>
           <div class="title-right-wrapper">
-            <button class="copy-sub-link" @click.stop="onClickCopyLink" v-if="artifact.url">
+            <button class="copy-sub-link" style="padding: 0 12px;" v-if="!isSimpleMode && artifact.url" @click.stop="onClickCopyLink">
               <font-awesome-icon icon="fa-solid fa-clone"></font-awesome-icon>
             </button>
+
             <button class="copy-sub-link" @click.stop="swipeController" v-if="!isMobile()" ref="moreAction">
               <font-awesome-icon icon="fa-solid fa-angles-right" />
             </button>
@@ -25,7 +26,11 @@
           </p>
           <div class="second-line-wrapper">
             <p>{{ detail.secondLine }}</p>
-            <div class="task-switch">
+            <div class="task-switch" style="margin-top: -22px;">
+              <button v-if="isSimpleMode && artifact.url" class="copy-sub-link"
+                style="padding: 0 12px;" @click.stop="onClickCopyLink">
+                <font-awesome-icon icon="fa-solid fa-clone"></font-awesome-icon>
+              </button>
               <span>
                 {{ $t(`syncPage.syncSwitcher`) }}
               </span>
@@ -96,7 +101,7 @@ import { useI18n } from 'vue-i18n';
 import { useGlobalStore } from '@/store/global';
 const globalStore = useGlobalStore();
 
-const { isLeftRight } = storeToRefs(globalStore);
+const { isLeftRight, isSimpleMode } = storeToRefs(globalStore);
 const { copy, isSupported } = useClipboard();
 const { toClipboard: copyFallback } = useV3Clipboard();
 
@@ -168,11 +173,18 @@ const transferText = (type: string) => {
   };
 
   const transTime = () => {
-    return artifact.value.updated
-      ? t(`syncPage.detail.secondLine`, {
-        time: butifyDate(artifact.value.updated),
-      })
-      : t(`syncPage.detail.notSync`);
+    if (isSimpleMode.value) {
+      return artifact.value.updated
+        ? butifyDate(artifact.value.updated)
+        : '';
+    } else {
+      return artifact.value.updated
+        ? t(`syncPage.detail.secondLine`, {
+          time: butifyDate(artifact.value.updated),
+        })
+        : t(`syncPage.detail.notSync`);
+    }
+
   };
 
   switch (type) {
@@ -183,17 +195,29 @@ const transferText = (type: string) => {
   }
 };
 
+
 const detail = computed(() => {
-  return {
-    firstLine: t(`syncPage.detail.firstLine`, {
-      type: transferText('type'),
-      name:
-        sourceSub.value?.displayName ||
-        sourceSub.value?.['display-name'] ||
-        sourceSub.value?.name,
-    }),
-    secondLine: transferText('time'),
-  };
+  if (isSimpleMode.value) {
+    const name =
+      sourceSub.value?.displayName ||
+      sourceSub.value?.['display-name'] ||
+      sourceSub.value?.name;
+    return {
+      firstLine: '',
+      secondLine: transferText('type') + ' ' + name + ' ' + transferText('time'),
+    };
+  } else {
+    return {
+      firstLine: t(`syncPage.detail.firstLine`, {
+        type: transferText('type'),
+        name:
+          sourceSub.value?.displayName ||
+          sourceSub.value?.['display-name'] ||
+          sourceSub.value?.name,
+      }),
+      secondLine: transferText('time'),
+    };
+  }
 });
 
 const swipeController = () => {
@@ -202,7 +226,7 @@ const swipeController = () => {
     swipeIsOpen.value = false;
     moreAction.value.style.transform = 'rotate(0deg)';
   } else {
-    if ( isLeftRight.value ){
+    if (isLeftRight.value) {
       swipe.value.open('right');
     } else {
       swipe.value.open('left');
@@ -297,7 +321,7 @@ watch(isSyncOpen, async () => {
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--item-card-radios);
-  padding: var(--safe-area-side);
+  // padding: var(--safe-area-side);
   display: flex;
   background: var(--card-color);
 
@@ -333,22 +357,7 @@ watch(isSyncOpen, async () => {
         color: var(--primary-text-color);
       }
 
-      .copy-sub-link {
-        background-color: transparent;
-        border: none;
-        padding: 0 12px;
-        cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 12px;
 
-        svg {
-          width: 16px;
-          height: 16px;
-          color: var(--lowest-text-color);
-        }
-      }
     }
 
     .sub-item-detail {
@@ -357,7 +366,7 @@ watch(isSyncOpen, async () => {
       -webkit-line-clamp: 3;
       word-wrap: break-word;
       word-break: break-all;
-      overflow: hidden;
+      // overflow: hidden;
       margin-top: 4px;
       font-size: 12px;
 
@@ -382,7 +391,7 @@ watch(isSyncOpen, async () => {
 
           .my-switch {
             height: 22px;
-            width: 40px;
+            width: 45px;
             min-width: 40px;
 
             :deep(.switch-button) {
@@ -390,6 +399,7 @@ watch(isSyncOpen, async () => {
               height: 18px;
             }
           }
+
         }
       }
 
@@ -429,6 +439,23 @@ watch(isSyncOpen, async () => {
         width: 44px;
       }
     }
+  }
+}
+
+.copy-sub-link {
+  background-color: transparent;
+  border: none;
+  padding: 0 12px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: var(--lowest-text-color);
   }
 }
 </style>
