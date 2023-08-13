@@ -1,6 +1,6 @@
 <template>
   <nut-swipe class="sub-item-swipe" ref="swipe">
-    <div class="sub-item-wrapper" :style="{'line-height': isSimpleMode ? 1 : '',padding: isSimpleMode ? '11px' : '16px' }" @click.stop="onclose">
+    <div class="sub-item-wrapper" :style="{'line-height': isSimpleMode ? 1 : '','padding': isSimpleMode ? '11px' : '16px' }" @click.stop="onclose">
       <div class="sub-img-wrapper">
         <nut-avatar class="sub-item-customer-icon" :size="isSimpleMode ? '36' : '48'" :url="icon" bg-color=""></nut-avatar>
       </div>
@@ -9,8 +9,8 @@
           <h3 class="sub-item-title">
             {{ displayName }}
           </h3>
-          <div class="title-right-wrapper">
-            <button class="copy-sub-link" style="padding: 0 12px;" v-if="!isSimpleMode && artifact.url" @click.stop="onClickCopyLink">
+          <div class="title-right-wrapper" v-if="!isSimpleMode">
+            <button class="copy-sub-link" style="padding: 0 12px;" v-if="artifact.url" @click.stop="onClickCopyLink">
               <font-awesome-icon icon="fa-solid fa-clone"></font-awesome-icon>
             </button>
 
@@ -27,10 +27,15 @@
           <div class="second-line-wrapper">
             <p>{{ detail.secondLine }}</p>
             <div class="task-switch" style="margin-top: -22px;">
-              <button v-if="isSimpleMode && artifact.url" class="copy-sub-link"
-                style="padding: 0 12px;" @click.stop="onClickCopyLink">
-                <font-awesome-icon icon="fa-solid fa-clone"></font-awesome-icon>
-              </button>
+              <div v-if="isSimpleMode">
+                <button v-if="artifact.url" class="copy-sub-link"
+                  style="padding: 0 12px;" @click.stop="onClickCopyLink">
+                  <font-awesome-icon icon="fa-solid fa-clone"></font-awesome-icon>
+                  <button class="copy-sub-link" @click.stop="swipeController" v-if="!isMobile()" ref="moreAction">
+                  <font-awesome-icon icon="fa-solid fa-angles-right" />
+                  </button>
+                </button>
+            </div>
               <span>
                 {{ $t(`syncPage.syncSwitcher`) }}
               </span>

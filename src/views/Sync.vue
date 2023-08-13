@@ -79,7 +79,7 @@ import { useSettingsStore } from '@/store/settings';
 import { useI18n } from 'vue-i18n';
 import ArtifactPanel from '@/components/ArtifactPanel.vue';
 
-const { t } = useI18n();
+// const { t } = useI18n();
 const globalStore = useGlobalStore();
 const artifactsStore = useArtifactsStore();
 const settingsStore = useSettingsStore();
