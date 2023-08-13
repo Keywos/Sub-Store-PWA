@@ -131,7 +131,7 @@
       移除：Monaco-Editor 组件
 
       <br> ㅤ•ㅤ
-      添加新主题、Simple 模式
+      添加新主题、Simple 模式 主页与管理页
       <br> ㅤ•ㅤ
       自定义后端 HostAPI 更多使用场景
       <br> ㅤ•ㅤ
