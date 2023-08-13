@@ -7,6 +7,7 @@ import { useSettingsStore } from '@/store/settings';
 import { useSubsStore } from '@/store/subs';
 // import { Toast } from '@nutui/nutui';
 
+
 export const initStores = async (
   needNotify: boolean,
   needFetchFlow: boolean,
@@ -32,6 +33,7 @@ export const initStores = async (
   // Toast.hide('refresh');
   // 更新所有数据
   try {
+    localStorage.removeItem('envCache');
     await subsStore.fetchSubsData();
     await artifactsStore.fetchArtifactsData();
     await settingsStore.fetchSettings();
