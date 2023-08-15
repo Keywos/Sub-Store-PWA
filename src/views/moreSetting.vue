@@ -138,8 +138,6 @@
       可选重启时自动下载 Gist 配置文件
 
       <br> ㅤ•ㅤ
-      卡片左滑可设置右滑呼出快捷方式。
-      <br> ㅤ•ㅤ
       优化侧滑返回容易失效的问题
       <br> ㅤ•ㅤ
       修复左右滑动组件的时候 没有阻止会上下滑动 容易误触
@@ -148,9 +146,16 @@
       <br> ㅤ•ㅤ
       点击订阅左边的图标才会预览，防止误触预览节点
       <br> ㅤ•ㅤ
-      点击卡片空白处可关闭当前滑块。添加编辑方便修改
+      首页订阅页面：卡片左滑呼出快捷方式，可设置右滑呼出。
+      <br>ㅤ ㅤ  点击卡片空白处可关闭当前滑块。添加编辑方便修改
+
       <br> ㅤ•ㅤ
-      首页图标默认图标依旧为黑白，自已定图标彩色
+      首页订阅页面图标默认图标依旧为黑白，自已定图标为彩色
+      <br> ㅤ•ㅤ
+      改进 Service Worker 通过将资源预缓存，更快、流畅地加载
+      <br>ㅤ ㅤ  网络连接稳定或不可用时仍能够访问程序
+      <br> ㅤ•ㅤ
+      增加预览时候的 V2Ray 入口
 
     </div>
   </div>
@@ -165,6 +170,7 @@ import { useMousePicker } from '@/hooks/useMousePicker';
 import { useThemes } from '@/hooks/useThemes';
 import { computed, ref, toRaw, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { Dialog } from '@nutui/nutui';
 
 const { t } = useI18n();
 const settingsStore = useSettingsStore();
@@ -258,14 +264,30 @@ const exitEditMode = () => {
 
 const toggleEditMode = async () => {
   isEditLoading.value = true;
-  if (isEditing.value) {
-    globalStore.sethostApi(InputHostApi.value);
-    setDisplayInfo();
+  if (!/^(https):\/\/\S+$/.test(InputHostApi.value) && isEditing.value && InputHostApi.value !== ""){
+    console.log('InputHostApi失败')
+    Dialog({
+        title: 'Url 验证失败 or 无效链接',
+        content: '主流浏览器都已经 Block 掉了 HTTPS 页面上的 HTTP 请求 请使用 Https 链接',
+        popClass: 'auto-dialog',
+        noCancelBtn: true,
+        okText: t(`editorPage.subConfig.pop.errorBtn`),
+        closeOnClickOverlay: true,
+      });
+      isEditing.value = false;
+      isEditLoading.value = false;
+      setDisplayInfo();
   } else {
-    InputHostApi.value = ishostApi.value;
+    if (isEditing.value) {
+      globalStore.sethostApi(InputHostApi.value);
+      setDisplayInfo();
+    } else {
+      InputHostApi.value = ishostApi.value;
+    }
+    isEditLoading.value = false;
+    isEditing.value = !isEditing.value;
   }
-  isEditLoading.value = false;
-  isEditing.value = !isEditing.value;
+  
 };
 
 

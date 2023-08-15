@@ -23,7 +23,9 @@ const getThemeModules = () => {
   keys.forEach(path => {
     const paths = path.split('/');
     const modulesName = paths[paths.length - 1].replace('.ts', '');
-    allThemes[modulesName] = modulesFiles[path]?.default;
+    // allThemes[modulesName] = modulesFiles[path]?.default;
+    allThemes[modulesName] = (modulesFiles[path] as any)?.default;
+
   });
 
   // 初始化 theme 表后开始处理继承关系

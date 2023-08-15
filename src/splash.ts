@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
 import SplashScreen from './SplashScreen.vue';
+import { registerSW } from 'virtual:pwa-register'
+registerSW({ immediate: true })
 
 const splashApp = createApp(SplashScreen);
 splashApp.mount('#app');

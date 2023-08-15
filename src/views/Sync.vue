@@ -19,6 +19,7 @@
 
     <!--有数据-->
     <div v-if="artifacts.length > 0" class="subs-list-wrapper">
+      
       <div class="sticky-title-wrapper sync-title">
         <p class="list-title">{{ $t(`syncPage.title`) }}</p>
         <div class="actions-wrapper">
@@ -31,6 +32,7 @@
           </nut-button>
         </div>
       </div>
+
       <ul>
         <li v-for="artifact in artifacts" :key="artifact.name">
           <ArtifactsListItem :name="artifact.name" @edit="onClickEdit" />
@@ -76,7 +78,7 @@ import { useGlobalStore } from '@/store/global';
 import { ref, computed } from 'vue';
 import { initStores } from '@/utils/initApp';
 import { useSettingsStore } from '@/store/settings';
-import { useI18n } from 'vue-i18n';
+// import { useI18n } from 'vue-i18n';
 import ArtifactPanel from '@/components/ArtifactPanel.vue';
 
 // const { t } = useI18n();
