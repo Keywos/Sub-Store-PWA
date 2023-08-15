@@ -3,7 +3,7 @@
 #!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/substore.png
 
 # 关于： Sub Store https://github.com/Keywos/Sub-Store-PWA
-# 前端： V 2.14.3 
+# 前端： V 2.14.4
 # Mock 模块: https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/Sub-Store-Mock.sgmodule
 # 在线版: https://keywos.eu.org
 # 更新： 更新组件库 NutUI v3.3.8，Picker 问题修复。 添加新主题，Simple 模式，自定义后端 HOSTAPI 方便更多使用场景。重启时自动下载 Gist 配置文件。移除：Monaco-Editor 组件
