@@ -49,7 +49,7 @@ watchEffect(() => {
 
 <style lang="scss">
 #app {
-  font-family: 'Roboto', 'Noto Sans', Arial, 'PingFang SC',
+  font-family: 'Roboto', 'nutui-iconfont', 'Noto Sans', Arial, 'PingFang SC',
     'Source Han Sans SC', 'Source Han Sans CN', 'Microsoft YaHei', 'ST Heiti',
     SimHei, sans-serif;
   display: flex;

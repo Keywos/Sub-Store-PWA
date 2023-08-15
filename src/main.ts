@@ -11,6 +11,7 @@ import nutUi from '@/plugin/nutui';
 import router from '@/router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 import 'modern-css-reset/dist/reset.min.css';
 import { createPinia } from 'pinia';
 import 'virtual:svg-icons-register';

@@ -3,7 +3,8 @@ import * as path from 'path';
 import { ConfigEnv, defineConfig, loadEnv } from 'vite';
 import { createStyleImportPlugin } from 'vite-plugin-style-import';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import viteCompression from 'vite-plugin-compression'
+import viteCompression from 'vite-plugin-compression';
+import { VitePWA } from 'vite-plugin-pwa';
 
 const alias: Record<string, string> = {
   '@': path.resolve(__dirname, 'src'),
@@ -22,7 +23,10 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
             libraryName: '@nutui/nutui',
             esModule: true,
             resolveStyle: name => {
-              name = name.toLowerCase().replace('-', ''); //NutuiResolve官方版目前在linux会造成大小写不一致问题无法加载资源
+              name = name.toLowerCase().replace('-', ''); // NutuiResolve官方版目前在linux会造成大小写不一致问题无法加载资源
+              if (name === 'icon') {
+                return '';
+              }
               return `@nutui/nutui/dist/packages/${name}/index.scss`;
             },
           },
@@ -39,6 +43,88 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
         threshold: 10240,
         // algorithm: 'gzip',
         // ext: '.gz'
+      }),
+      VitePWA({
+        srcDir: 'src',
+        outDir: 'distpwa',
+        strategies: 'generateSW',
+        registerType: 'autoUpdate',
+        // minify: true,
+        // includeAssets: ['favicon.svg'],
+        manifest: {
+          name: 'Sub Store',
+          short_name: 'Sub Store',
+          description: 'A sub-converter running in a Progressive Web App',
+          theme_color: '#121212',
+          background_color: '#121212',
+          id: '/',
+          start_url: '/',
+          scope: '/',
+          lang: 'en',
+          display: 'standalone',
+          icons: [
+            {
+              src: '144x144.png',
+              sizes: '144x144',
+              type: 'image/png',
+            },
+            {
+              src: '168x168.png',
+              sizes: '168x168',
+              type: 'image/png',
+            },
+            {
+              src: '192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+            {
+              src: '256x256.png',
+              sizes: '256x256',
+              type: 'image/png',
+            },
+            {
+              src: '512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any',
+            },
+          ],
+        },
+        workbox: {
+          // globPatterns: ['**/*.{css,js,gz,eot,html,svg,png,ico,ttf,woff2}'],
+          runtimeCaching: [
+            {
+              urlPattern: /.*\.(?:js|css|gz|html|json)/i, // json
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'sub-store-js-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 30,
+                },
+                cacheableResponse: {
+                  statuses: [200],
+                },
+              },
+            },
+            {
+              urlPattern: /.*\.(?:png|svg|ico|woff|ttf|eot)/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'sub-store-res-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365,
+                },
+                cacheableResponse: {
+                  statuses: [200],
+                },
+              },
+            },
+          ],
+        },
+        selfDestroying: false,
       }),
     ],
     root: process.cwd(),

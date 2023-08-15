@@ -36,7 +36,7 @@
                   </button>
                 </button>
             </div>
-              <span>
+              <span v-if="!isSimpleMode">
                 {{ $t(`syncPage.syncSwitcher`) }}
               </span>
               <nut-switch class="my-switch" v-model="isSyncOpen" :loading="isSwitcherLoading" />
