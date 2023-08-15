@@ -54,16 +54,23 @@
         <div class="title-wrapper">
           <h1>{{ $t(`moreSettingPage.hostapi`) }}</h1>
           <div class="config-btn-wrapper">
-            <nut-button v-if="isEditing" class="cancel-btn" plain type="info" size="mini" @click="exitEditMode"
-              :disabled="isEditLoading">
-              <font-awesome-icon icon="fa-solid fa-ban" />
+
+            <nut-button v-if="isEditing" class="cancel-btn" plain type="info" size="mini" 
+              @click="clearEditor" :disabled="isEditLoading">清空
+            </nut-button>
+
+            <nut-button v-if="isEditing" class="cancel-btn" plain type="info" size="mini" 
+              @click="exitEditMode" :disabled="isEditLoading">
               {{ $t(`myPage.btn.cancel`) }}
             </nut-button>
-            <nut-button class="save-btn" type="primary" size="mini" @click="toggleEditMode" :loading="isEditLoading">
+
+            <nut-button class="save-btn" type="primary" size="mini" 
+            @click="toggleEditMode" :loading="isEditLoading">
               <font-awesome-icon v-if="!isEditing" icon="fa-solid fa-pen-to-square" />
               <font-awesome-icon v-else-if="!isEditLoading && isEditing" icon="fa-solid fa-floppy-disk" />
               {{ !isEditing ? $t(`myPage.btn.edit`) : $t(`myPage.btn.save`) }}
             </nut-button>
+
           </div>
         </div>
 
@@ -79,7 +86,6 @@
       {{ $t(`moreSettingPage.serverDesc`) }} 可以跳转链接 查看 小一佬的后端搭建教程：<a target="_blank"
         href="https://xream.notion.site/Node-js-render-fork-3334b3943c4f4671b25a24908613e63d">
         https://xream.notion.site/Node-js-render-fork-3334b3943c4f4671b25a24908613e63d </a>
-
     </p>
 
     <nut-cell :title="$t(`moreSettingPage.auto`)" class="cell-item">
@@ -91,7 +97,6 @@
     <p class="desc-title">
       {{ $t(`moreSettingPage.desc`) }}
     </p>
-
 
 
     <nut-picker v-model="selectedValue" v-model:visible="showThemePicker" :columns="pickerColumn"
@@ -147,13 +152,13 @@
       点击订阅左边的图标才会预览，防止误触预览节点
       <br> ㅤ•ㅤ
       首页订阅页面：卡片左滑呼出快捷方式，可设置右滑呼出。
-      <br>ㅤ ㅤ  点击卡片空白处可关闭当前滑块。添加编辑方便修改
+      <br>ㅤ ㅤ 点击卡片空白处可关闭当前滑块。添加编辑方便修改
 
       <br> ㅤ•ㅤ
       首页订阅页面图标默认图标依旧为黑白，自已定图标为彩色
       <br> ㅤ•ㅤ
       改进 Service Worker 通过将资源预缓存，更快、流畅地加载
-      <br>ㅤ ㅤ  网络连接稳定或不可用时仍能够访问程序
+      <br>ㅤ ㅤ 网络连接稳定或不可用时仍能够访问程序
       <br> ㅤ•ㅤ
       增加预览时候的 V2Ray 入口
 
@@ -264,19 +269,19 @@ const exitEditMode = () => {
 
 const toggleEditMode = async () => {
   isEditLoading.value = true;
-  if (!/^(https):\/\/\S+$/.test(InputHostApi.value) && isEditing.value && InputHostApi.value !== ""){
+  if (!/^(https):\/\/\S+$/.test(InputHostApi.value) && isEditing.value && InputHostApi.value !== "") {
     console.log('InputHostApi失败')
     Dialog({
-        title: 'Url 验证失败 or 无效链接',
-        content: '主流浏览器都已经 Block 掉了 HTTPS 页面上的 HTTP 请求 请使用 Https 链接',
-        popClass: 'auto-dialog',
-        noCancelBtn: true,
-        okText: t(`editorPage.subConfig.pop.errorBtn`),
-        closeOnClickOverlay: true,
-      });
-      isEditing.value = false;
-      isEditLoading.value = false;
-      setDisplayInfo();
+      title: '链接验证失败 或无效链接',
+      content: '主流浏览器都已经 Block 掉了 HTTPS 页面上的 HTTP 请求 请使用 Https 链接',
+      popClass: 'auto-dialog',
+      noCancelBtn: true,
+      okText: t(`editorPage.subConfig.pop.errorBtn`),
+      closeOnClickOverlay: true,
+    });
+    isEditing.value = false;
+    isEditLoading.value = false;
+    setDisplayInfo();
   } else {
     if (isEditing.value) {
       globalStore.sethostApi(InputHostApi.value);
@@ -287,9 +292,22 @@ const toggleEditMode = async () => {
     isEditLoading.value = false;
     isEditing.value = !isEditing.value;
   }
-  
+
 };
 
+const clearEditor = () => {
+  Dialog({
+    title: t('editorPage.subConfig.pop.clearTitle'),
+    content: t('editorPage.subConfig.pop.clearDes'),
+    popClass: 'auto-dialog',
+    okText: t(`editorPage.subConfig.pop.clearConfirm`),
+    cancelText: t(`editorPage.subConfig.pop.clearCancel`),
+    onOk: () => {
+      InputHostApi.value = '';
+    },
+    closeOnClickOverlay: true,
+  });
+};
 
 watchEffect(() => {
   SimpleSwitch.value = isSimpleMode.value;
@@ -453,10 +471,12 @@ watchEffect(() => {
     }
 
     .config-btn-wrapper {
+      margin-top: -9px;
       display: flex;
       justify-content: flex-end;
 
       .cancel-btn {
+        margin-left: 8px;
         background: transparent;
       }
 
