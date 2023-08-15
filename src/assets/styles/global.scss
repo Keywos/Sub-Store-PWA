@@ -46,6 +46,9 @@ img {
   overflow: hidden;
   padding-bottom: 24px;
 }
+.nut-button {
+  margin-right: 10px;
+}
 
 // 顶部粘性定位标题样式
 // .sticky-title-wrapper {
@@ -91,6 +94,9 @@ img {
 }
 .nut-icon-refresh2:before {
   content: "\e682"; // sync
+}
+.nut-icon-refresh:before {
+  content: "\e690";
 }
 
 .nut-icon-checked:before {
