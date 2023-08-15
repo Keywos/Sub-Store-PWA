@@ -22,7 +22,7 @@
 
 // sticky title 顶部粘性定位标题
 .sticky-title-wrapper {
-  // margin-top: var(--safe-area-side);
+  margin-top: var(--safe-area-side);
   // backdrop-filter: blur(var(--sticky-title-blur));
   // -webkit-backdrop-filter: blur(var(--sticky-title-blur));
   color: var(--comment-text-color);
