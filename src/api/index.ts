@@ -31,7 +31,7 @@ service.interceptors.response.use(
       // 如果是网络错误，则提示网络错误
       if (e.response.status === 0) {
         appNotifyStore.showNotify({
-          title: '网络错误，无法连接后端服务\n',
+          title: '网络错误或后端异常，无法连接后端服务\n',
           content: 'code: ' + e.response.status + ' msg: ' + e.message,
           ...notifyConfig,
         });
