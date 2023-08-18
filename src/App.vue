@@ -55,14 +55,14 @@ watchEffect(() => {
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 100%;
+  // height: 100%;
   width: 100%;
 
   background: var(--background-color);
-  overflow: hidden;
+  // overflow: hidden;
 
   .page-body {
-    overflow: hidden;
+    // overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;

@@ -1,8 +1,5 @@
 <template >
   <div class="my-page-wrapper" 
-  @touchstart="onTouchStart"
-    @touchmove="onTouchMove"
-    @touchend="onTouchEnd"
   >
     <div class="profile-block">
       <div class="info">
@@ -142,23 +139,7 @@ const tokenInput = ref('');
 const isEditing = ref(false);
 const isEditLoading = ref(false);
 const isInit = ref(false);
-const touchStartY = ref(null);
 
-const onTouchStart =(event: TouchEvent) => {
-  touchStartY.value = Math.abs(event.touches[0].clientY);
-}
-const onTouchMove = (event: TouchEvent) => {
-  const deltaY = Math.abs(event.changedTouches[0].clientY - touchStartY.value);
-  const isScrollingUps = deltaY > 0;
-
-  if (isScrollingUps && isScrollingUps) {
-    event.preventDefault();
-  }
-};
-
-const onTouchEnd = () => {
-  touchStartY.value = null;
-};
 const toggleEditMode = async () => {
   isEditLoading.value = true;
   if (isEditing.value) {
@@ -406,6 +387,8 @@ watchEffect(() => {
   }
 
   .env-block {
+    padding-top: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
