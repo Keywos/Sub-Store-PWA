@@ -51,15 +51,15 @@ img {
 }
 
 // 顶部粘性定位标题样式
-// .sticky-title-wrapper {
-  // position: sticky;
-  // display: block;
-  // z-index: 1;
-  // top: 0;
-  // font-size: 16px;
-  // font-weight: bold;
-//   // line-height: 2;
-// }
+.sticky-title-wrapperse {
+  position: sticky;
+  display: block;
+  z-index: 1;
+  top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 2;
+}
 .nut-icon-issue:before {
   content: "\e6b1";
 }

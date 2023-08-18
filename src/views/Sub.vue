@@ -56,22 +56,43 @@
       <div class="sticky-title-wrappers">
         <p class="list-title">{{ $t(`specificWord.singleSub`) }}</p>
       </div>
-      <ul>
-        <li v-for="sub in subs" :key="sub.name">
-          <SubListItem :sub="sub" type="sub" />
-        </li>
-      </ul>
+
+      <draggable v-model="subs" @input="sortSubs" @change="changeSubs" itemKey="name" :scroll-sensitivity="200"
+        :force-fallback="true" :scrollSpeed="8" :scroll="true" v-bind="{
+          animation: 200,
+          disabled: false,
+          delay: 200,
+          chosenClass: 'chosensub',
+          handle: 'div'
+        }">
+        <template #item="{ element }">
+          <li :key="element.name" class="draggable-item">
+            <SubListItem :sub="element" type="sub" />
+
+          </li>
+        </template>
+      </draggable>
     </div>
 
     <div v-if="hasCollections" class="subs-list-wrapper">
       <div class="sticky-title-wrappers">
         <p class="list-title">{{ $t(`specificWord.collectionSub`) }}</p>
       </div>
-      <ul>
-        <li v-for="collection in collections" :key="collection.name">
-          <SubListItem :collection="collection" type="collection" />
-        </li>
-      </ul>
+
+      <draggable v-model="collections" @input="sortCollections" @change="changeCollections" itemKey="name"
+        :scroll-sensitivity="200" :force-fallback="true" :scrollSpeed="8" :scroll="true" v-bind="{
+          animation: 200,
+          disabled: false,
+          delay: 200,
+          chosenClass: 'chosensub',
+          handle: 'div'
+        }">
+        <template #item="{ element }">
+          <li :key="element.name" class="draggable-item">
+            <SubListItem :collection="element" type="collection" />
+          </li>
+        </template>
+      </draggable>
     </div>
 
     <!--没有数据-->
@@ -110,7 +131,16 @@ import { useGlobalStore } from '@/store/global';
 import { useSubsStore } from '@/store/subs';
 import { initStores } from '@/utils/initApp';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
+import draggable from 'vuedraggable';
+
+// import { useAppNotifyStore } from '@/store/appNotify';
+// import { Dialog, Toast } from '@nutui/nutui';
+// const { showNotify } = useAppNotifyStore();
+
+import { useSubsApi } from '@/api/subs';
+const subsApi = useSubsApi();
+
 
 const touchStartY = ref(null);
 const touchStartX = ref(null);
@@ -142,15 +172,32 @@ const globalStore = useGlobalStore();
 const { hasSubs, hasCollections, subs, collections } = storeToRefs(subsStore);
 const { isLoading, fetchResult, bottomSafeArea } = storeToRefs(globalStore);
 
+
 const refresh = () => {
   initStores(true, true, true);
+};
+
+const sortSubs = (newSub:any) => {
+  subs.value = newSub;
+};
+const changeSubs = async () => {
+  await subsApi.sortSub('subs', JSON.parse(JSON.stringify(toRaw(subs.value))));
+};
+
+
+const sortCollections = (newCollections:any) => {
+  collections.value = newCollections;
+};
+
+const changeCollections = async () => {
+  await subsApi.sortSub('collections', JSON.parse(JSON.stringify(toRaw(collections.value))));
+  // showNotify({ title: '6666' });
 };
 
 
 </script>
 
 <style lang="scss">
-
 .drag-btn-wrapper {
   position: relative;
   z-index: 999;
@@ -222,23 +269,6 @@ const refresh = () => {
   }
 }
 
-.subs-list-wrapper {
-
-  margin-bottom: 36px;
-  position: relative;
-
-
-
-  &>ul {
-    margin: 8px 0;
-    overflow: hidden;
-
-    >li:not(:last-child) {
-      margin-bottom: 12px;
-    }
-  }
-}
-
 .no-data-wrapper {
   width: 100%;
   height: 100%;
@@ -305,4 +335,39 @@ const refresh = () => {
   color: var(--primary-color);
 
 }
+
+.draggable-item {
+  width: 100%;
+  list-style: none;
+  /* Remove the default list-style (small dot) */
+  // border: 1px solid #ccc;
+  // padding: 6px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 2.5px;
+  // display: flex;
+  // align-items: center;
+  width: 98.5%;
+  overflow: hidden;
+}
+
+.drag-handler {
+  padding-left: 16px;
+  color: var(--lowest-text-color);
+}
+
+
+.chosensub {
+  box-shadow: 0 0 10px var(--primary-color);
+
+  background-color: var(--card-color);
+  border-radius: var(--item-card-radios);
+  // border: 2px var(--primary-color-end);
+  // border: solid 1px var(--primary-color) !important;
+  margin-left: 6px;
+  // display: flex;
+  // align-items: center;
+  width: 96.5%;
+}
+
 </style>

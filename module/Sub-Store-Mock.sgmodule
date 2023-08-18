@@ -3,7 +3,7 @@
 #!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/substore.png
 
 # 关于： Sub Store https://github.com/Keywos/Sub-Store-PWA
-# 前端： V 2.14.5
+# 前端： V 2.14.6
 # Mock 模块: https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/Sub-Store-Mock.sgmodule
 # 在线版: https://keywos.vercel.app https://keywos.eu.org 
 
@@ -21,28 +21,26 @@
  # 脚本操作、正则操作、等平铺放置更容易添加操作
  # 点击订阅左边的图标才会预览，防止误触预览节点
  # 首页订阅页面：卡片左滑呼出快捷方式，可设置右滑呼出。
- #点击卡片空白处可关闭当前滑块。添加编辑方便修改
+ # 点击卡片空白处可关闭当前滑块。添加编辑方便修改
 
  # 首页订阅页面图标默认图标依旧为黑白，自已定图标为彩色
  # 改进 Service Worker 通过将资源预缓存，更快、流畅地加载网络连接稳定或不可用时仍能够访问程序
  # 增加预览时候的 V2Ray 入口
- 
+ # 新增长按卡片拖动排序，前端需 v2.14.6+ 后端 v2.14.13+
 # 本地重命名：https://raw.githubusercontent.com/Keywos/rule/main/rename.js
 # Ping清除无效节点：https://raw.githubusercontent.com/Keywos/rule/main/pname.js
 # Api去重、查询ISP等：https://raw.githubusercontent.com/Keywos/rule/main/cname.js
 
 [Map Local]
 # HTML
-^https?:\/\/sub-store\.vercel\.app\/($|index\.html|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.html" header="Content-Type: text/html; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/($|index\.html|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.html" header="Content-Type: text/html; charset=utf-8"
 
 # JS VUE
-^https?:\/\/sub-store\.vercel\.app\/index\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/index.js" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/main\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/index\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest|sw)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
 
-^https?:\/\/sub-store\.vercel\.app\/workbox-window\.prod\.es5\.js  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/workbox-window.prod.es5.js" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/manifest\.webmanifest  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/manifest.webmanifest" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/workbox-[a-z0-9]{8}\.js  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/workbox.js" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/sw\.js  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/sw.js" header="Content-Type: application/javascript; charset=utf-8"
+# MAIN
+^https?:\/\/sub-store\.vercel\.app\/main\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js" header="Content-Type: application/javascript; charset=utf-8"
 
 # CSS
 ^https?:\/\/sub-store\.vercel\.app\/main\.css data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.css" header="Content-Type: text/css; charset=utf-8"
@@ -67,7 +65,6 @@
 ^https?:\/\/sub-store\.vercel\.app\/3x_static_iconfont\.ttf data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/3x_static_iconfont.ttf" header="Content-Type: font/ttf"
 ^https?:\/\/sub-store\.vercel\.app\/3x_static_iconfont\.woff data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/3x_static_iconfont.woff" header="Content-Type: font/woff"
 # ^https?:\/\/sub-store\.vercel\.app\/3x_static_iconfont\.woff2 data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/3x_static_iconfont.woff2" header="Content-Type: font/woff2"
-
 
 [MITM]
 hostname = %APPEND% sub.store, sub-store.vercel.app

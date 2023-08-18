@@ -2,7 +2,7 @@
 <template >
   <!-- 滚动内容 -->
   <nut-swipe class="sub-item-swipe" ref="swipe">
-    <div class="sub-item-wrapper" :style="{ padding: isSimpleMode ? '11px' : '16px' }" @click="swipeClose">
+    <div class="sub-item-wrapper oooo" :style="{ padding: isSimpleMode ? '11px' : '16px' }" @click="swipeClose">
       <!-- compareSub -->
       <div @click="compareSub" class="sub-img-wrapper" :style="{ 'line-height': isSimpleMode ? 1 : '' }">
         <nut-avatar v-if="props[props.type].icon" :size="isSimpleMode ? '36' : '48'" :url="props[props.type].icon"
@@ -13,10 +13,10 @@
       <div class="sub-item-content">
         <div class="sub-item-title-wrapper">
 
-          <h3 v-if="!isSimpleMode" class="sub-item-title">
+          <h3 v-if="!isSimpleMode" class="sub-item-title dragkey">
             {{ displayName || name }}
           </h3>
-          <h3 v-else style="color: var(--primary-text-color); font-size: 14px;">
+          <h3 v-else class="dragkey" style="color: var(--primary-text-color); font-size: 14px;">
             {{ displayName || name }}
           </h3>
 
@@ -27,6 +27,8 @@
             <button class="refresh-sub-flow" @click.stop="onClickRefresh" v-if="props.type === 'sub' && !isSimpleMode">
               <font-awesome-icon icon="fa-solid fa-arrow-rotate-right" />
             </button>
+
+
 
             <!-- 编辑 -->
             <button v-if="!isSimpleMode" class="copy-sub-link" @click.stop="onClickEdit">
@@ -40,6 +42,7 @@
             <button class="copy-sub-link" @click.stop="swipeController" v-if="!isMobile()" ref="moreAction">
               <font-awesome-icon icon="fa-solid fa-angles-right" />
             </button>
+
 
           </div>
         </div>
@@ -58,9 +61,11 @@
             </template>
           </p>
           <p v-else-if="type === 'collection'" class="sub-item-detail">
+
             {{ collectionDetail }}
           </p>
         </template>
+
         <template v-else>
           <p v-if="type === 'sub'" class="sub-item-detail-isSimple">
 
@@ -84,6 +89,7 @@
       </div>
 
     </div>
+    <!-- 加入判断 开启拖动不显示 -->
     <template v-if="isLeftRight" #left>
       <!-- Copy -->
       <div class="sub-item-swipe-btn-wrapper">
@@ -408,7 +414,7 @@ const onClickRefresh = async () => {
 }
 
 .sub-item-wrapper {
-  width: calc(100% - 24px);
+  width: calc(100% - 12px);
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--item-card-radios);
@@ -428,6 +434,7 @@ const onClickRefresh = async () => {
       border-radius: 10px;
     }
   }
+
 
   >.sub-item-content {
     flex: 1;
@@ -558,5 +565,25 @@ const onClickRefresh = async () => {
 .desc-about a {
   color: var(--primary-color);
 
+}
+
+.dragkey {
+  min-width: 50px;
+  // background-color:#000;
+}
+
+.subs-list-wrapper {
+
+  margin-bottom: 36px;
+  position: relative;
+
+  &>ul {
+    margin: 8px 0;
+    overflow: hidden;
+
+    >li:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
 }
 </style>

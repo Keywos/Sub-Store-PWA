@@ -33,11 +33,26 @@
         </div>
       </div>
 
-      <ul>
+      <!-- <ul>
         <li v-for="artifact in artifacts" :key="artifact.name">
           <ArtifactsListItem :name="artifact.name" @edit="onClickEdit" />
         </li>
-      </ul>
+      </ul> -->
+      
+      <draggable v-model="artifacts" @input="sortArtifacts" @change="changeArtifacts" itemKey="name"
+        :scroll-sensitivity="200" :force-fallback="true" :scrollSpeed="8" :scroll="true" v-bind="{
+          animation: 200,
+          disabled: false,
+          delay: 200,
+          chosenClass: 'chosensub',
+          handle: 'div'
+        }">
+        <template #item="{ element }">
+          <li :key="element.name" class="draggable-item">
+            <ArtifactsListItem :name="element.name" @edit="onClickEdit" />
+          </li>
+        </template>
+      </draggable>
     </div>
 
     <!--没有数据-->
@@ -75,12 +90,14 @@ import ArtifactsListItem from '@/components/ArtifactsListItem.vue';
 import { useArtifactsStore } from '@/store/artifacts';
 import { storeToRefs } from 'pinia';
 import { useGlobalStore } from '@/store/global';
-import { ref, computed } from 'vue';
+import { ref, computed, toRaw } from 'vue';
 import { initStores } from '@/utils/initApp';
 import { useSettingsStore } from '@/store/settings';
 // import { useI18n } from 'vue-i18n';
 import ArtifactPanel from '@/components/ArtifactPanel.vue';
-
+import draggable from 'vuedraggable';
+import { useSubsApi } from '@/api/subs';
+const subsApi = useSubsApi();
 // const { t } = useI18n();
 const globalStore = useGlobalStore();
 const artifactsStore = useArtifactsStore();
@@ -147,6 +164,15 @@ const onclickAddArtifact = () => {
 const closeArtifactPanel = () => {
   editTargetName.value = '';
   isEditPanelVisible.value = false;
+};
+
+const sortArtifacts = (newCollections:any) => {
+  artifacts.value = newCollections;
+};
+
+const changeArtifacts = async () => {
+  await subsApi.sortSub('artifacts', JSON.parse(JSON.stringify(toRaw(artifacts.value))));
+  // showNotify({ title: '6666' });
 };
 
 </script>

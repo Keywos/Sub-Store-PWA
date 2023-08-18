@@ -108,7 +108,7 @@
       关于：Sub Store<br>
       <span>
         前端：
-        v 2.14.5
+        v 2.14.6
         -<a target="_blank" href="https://github.com/Keywos/Sub-Store-PWA"> github.com/Keywos/Sub-Store-PWA
         </a>
         <br>
@@ -161,7 +161,8 @@
       <br>ㅤ ㅤ 网络连接稳定或不可用时仍能够访问程序
       <br> ㅤ•ㅤ
       增加预览时候的 V2Ray 入口
-
+      <br> ㅤ•ㅤ
+      新增长按卡片拖动排序，前端需 v2.14.6+ 后端 v2.14.13+
     </div>
   </div>
 </template>
