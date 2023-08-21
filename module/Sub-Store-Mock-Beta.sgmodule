@@ -1,5 +1,5 @@
 #!name=Sub-Store Mock GZ 测试版
-#!desc=测试版, 请勿转换，否则用不了！！！
+#!desc=测试版, 请勿转换，否则用不了！！！！
 #!icon = https://raw.githubusercontent.com/Keywos/rule/main/tv/app/144px/substore.png
 
 
@@ -14,6 +14,7 @@
 # CSS GZ
 ^https?:\/\/sub-store\.vercel\.app\/main\.css$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.css.gz" header="Content-Type: text/css; charset=utf-8|Content-Encoding: gzip"
 
+^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest|sw)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
 # JSON
 ^https?:\/\/sub-store\.vercel\.app\/manifest\.json data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/manifest.json" header="Content-Type: application/json; charset=utf-8"
 
