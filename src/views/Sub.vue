@@ -182,7 +182,7 @@ const refresh = () => {
 //   subs.value = newSub;
 // };
 const changeSubs = async () => {
-  // console.log('2233')
+  console.log('2233')
   await subsApi.sortSub('subs', JSON.parse(JSON.stringify(toRaw(subs.value))));
 };
 
