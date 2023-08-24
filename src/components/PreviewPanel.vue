@@ -1,29 +1,9 @@
 <template>
   <ul class="preview-list">
-    <li>
-      <div :href="`${host}/download/${type === 'sub' ? '' : 'collection/'
-        }${name}`" target="_blank">
-        <div>
-          <a :href="`${host}/download/${type === 'sub' ? '' : 'collection/'}${name}`" target="_blank">
-            <img :src="logoicon" class="auto-reverse" />
-          </a>
-        </div>
-        <div class="copy-div" @click.stop="targetCopy(null)">
-          {{ general }}
-          <button class="copy-sub-link">
-            <img :src="copyicon" />
-          </button>
-        </div>
-      </div>
-    </li>
-  </ul>
-
-  <ul class="preview-list">
     <li v-for="platform in platformList" :key="platform.name">
-      <div :href="`${host}/download/${type === 'sub' ? '' : 'collection/'
-        }${name}?target=${platform.path}`" target="_blank">
+      <div>
         <div>
-          <a :href="`${host}/download/${type === 'sub' ? '' : 'collection/'}${name}?target=${platform.path}`"
+          <a :href="`${host}/download/${type === 'sub' ? '' : 'collection/'}${name}${platform.path !== null ? `?target=${platform.path}` : ''}`"
             target="_blank">
             <img :src="platform.icon" class="auto-reverse" /></a>
         </div>
@@ -32,7 +12,6 @@
           <button class="copy-sub-link">
             <img :src="copyicon" />
           </button>
-
         </div>
       </div>
     </li>
@@ -70,9 +49,14 @@ const targetCopy = async (path: string) => {
   } else {
     await copyFallback(encodeURI(url));
   }
-  showNotify({ title: notify, content: url, type: 'primary'});
+  showNotify({ title: notify, content: url });
 };
 const platformList = [
+  {
+    name: general,
+    path: null,
+    icon: logoicon,
+  },
   {
     name: 'Clash',
     path: 'Clash',
@@ -162,9 +146,7 @@ const platformList = [
     .copy-sub-link {
       background-color: transparent;
       border: none;
-      margin-right: 9px;
 
-      // padding: 0px 16px;
       img {
         width: 20px;
         height: 20px;
@@ -172,8 +154,6 @@ const platformList = [
         filter: brightness(var(--img-brightness));
       }
     }
-
   }
-
 }
 </style>
