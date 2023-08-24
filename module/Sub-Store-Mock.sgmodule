@@ -60,6 +60,7 @@
 ^https?:\/\/sub-store\.vercel\.app\/user-solid\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/user-solid.svg" header="Content-Type: image/svg+xml"
 ^https?:\/\/sub-store\.vercel\.app\/key-solid\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/key-solid.svg" header="Content-Type: image/svg+xml"
 ^https?:\/\/sub-store\.vercel\.app\/avatar\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/avatar.svg" header="Content-Type: image/svg+xml"
+^https?:\/\/sub-store\.vercel\.app\/copy\.svg data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/copy.svg" header="Content-Type: image/svg+xml"
 
 # FONT
 ^https?:\/\/sub-store\.vercel\.app\/3x_static_iconfont\.ttf data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/3x_static_iconfont.ttf" header="Content-Type: font/ttf"
