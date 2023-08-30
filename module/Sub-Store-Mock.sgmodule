@@ -37,7 +37,7 @@
 
 # JS VUE
 ^https?:\/\/sub-store\.vercel\.app\/index\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.js" header="Content-Type: application/javascript; charset=utf-8"
-^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest|sw|registerSW)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest\.webmanifest|sw|registerSW)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
 
 # MAIN
 ^https?:\/\/sub-store\.vercel\.app\/main\.js data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js" header="Content-Type: application/javascript; charset=utf-8"
