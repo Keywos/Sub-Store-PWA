@@ -19,4 +19,4 @@ interface SettingsPostData {
   autoDownloadGistSync?: boolean;
 }
 
-type CustomTheme = 'light' | 'dark';
+type CustomTheme = 'lightblue' | 'pureblack';
