@@ -8,7 +8,7 @@
 ^https?:\/\/sub-store\.vercel\.app\/($|subs$|my$|edit\/subs\/) data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.html" header="Content-Type: text/html; charset=utf-8"
 
 # JS VUE GZ
-^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.js.gz" header="Content-Type: application/javascript; charset=utf-8|Content-Encoding: gzip"
+^https?:\/\/sub-store\.vercel\.app\/index\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/index.js" header="Content-Type: application/javascript; charset=utf-8"
 ^https?:\/\/sub-store\.vercel\.app\/main\.js$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.js.gz" header="Content-Type: application/javascript; charset=utf-8|Content-Encoding: gzip"
 
 # CSS GZ
