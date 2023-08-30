@@ -7,9 +7,9 @@
 // const splashApp = createApp(First);
 // splashApp.mount('#app');
 export {}
-// setTimeout(() => {
+setTimeout(() => {
   // splashApp.unmount();
   import('./main').then(({ initializeApp }) => {
     initializeApp();
   });
-// }, 20);
+}, 9);
