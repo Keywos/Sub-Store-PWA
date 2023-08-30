@@ -139,6 +139,7 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
       outDir: 'distpwa',
       sourcemap: false,
       chunkSizeWarningLimit: 1500,
+      reportCompressedSize:false,
       target: 'es2015',
       minify: 'terser',
       input: {
@@ -156,6 +157,9 @@ const viteConfig = defineConfig((mode: ConfigEnv) => {
         compress: {
           drop_console: true,
           drop_debugger: true,
+        },
+        output: {
+          comments: false, // 移除所有注释
         },
       },
     },

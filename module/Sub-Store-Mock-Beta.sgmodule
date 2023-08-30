@@ -14,7 +14,7 @@
 # CSS GZ
 ^https?:\/\/sub-store\.vercel\.app\/main\.css$ data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/main.css.gz" header="Content-Type: text/css; charset=utf-8|Content-Encoding: gzip"
 
-^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest|sw)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
+^https?:\/\/sub-store\.vercel\.app\/(workbox|manifest|sw|registerSW)  data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/module/sw.js" header="Content-Type: application/javascript; charset=utf-8"
 # JSON
 ^https?:\/\/sub-store\.vercel\.app\/manifest\.json data="https://raw.githubusercontent.com/Keywos/Sub-Store-PWA/main/distpwa/manifest.json" header="Content-Type: application/json; charset=utf-8"
 
