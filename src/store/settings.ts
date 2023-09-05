@@ -17,9 +17,9 @@ export const useSettingsStore = defineStore('settingsStore', {
       syncTime: 0,
       theme: {
         auto: true,
-        name: 'lightblue',
-        dark: 'pureblack',
-        light: 'lightblue',
+        name: 'light',
+        dark: 'dark',
+        light: 'light',
       },
       avatarUrl: '',
       artifactStore: '',
