@@ -121,7 +121,9 @@
   });
   const addApiHandler = async () => {
     if (!addForm.value.name || !addForm.value.url) return;
+
     const result = await addApi(addForm.value);
+    console.log(JSON.stringify(result));
     result &&
       (addForm.value = {
         name: '',
