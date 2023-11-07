@@ -479,13 +479,23 @@
         }
       }
 
-      router.replace('/').then(() => {
-        if (res)
-          showNotify({
-            type: 'success',
-            title: t(`editorPage.subConfig.pop.succeedMsg`),
-          });
-      });
+      // router.replace('/').then(() => {
+      //   if (res)
+      //     showNotify({
+      //       type: 'success',
+      //       title: t(`editorPage.subConfig.pop.succeedMsg`),
+      //     });
+      // });
+      if (res?.data?.status === 'success') {
+        router.replace('/').then(() => {
+          if (res)
+            showNotify({
+              type: 'success',
+              title: t(`editorPage.subConfig.pop.succeedMsg`),
+            });
+        });
+  
+      }
       isget.value=false;
       Toast.hide('submits');
     });
