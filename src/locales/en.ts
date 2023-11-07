@@ -16,7 +16,7 @@ export default {
   navBar: {
     langSwitcher: {
       cellTitle: 'Tap a language which you want to use',
-      zh: '简体中文 v2.15',
+      zh: '简体中文 v2.15.1',
       en: 'English',
     },
     pagesTitle: {
